@@ -14,5 +14,8 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-query": "^2.8.0"
+  },
+  "devDependencies": {
+    "svg-react-loader": "^0.4.6"
   }
 }
