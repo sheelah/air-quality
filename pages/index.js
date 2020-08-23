@@ -25,12 +25,18 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Air Quality Today</title>
+        <title>Air Quality Now</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="Get the current air quality for your location"
+        />
+        <meta property="og:title" content="Home" />
+        <meta property="og:type" content="website" />
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Air Quality Today</h1>
+        <h1 className={styles.title}>Air Quality Now</h1>
 
         <LocationContext.Provider
           value={{
