@@ -1,12 +1,8 @@
 import React from 'react';
 
 export const LocationContext = React.createContext({
-  location: {},
-  setLocation: () => {},
-  isFetching: false,
-  setIsFetching: () => {},
-  airQualityIndex: null,
-  setAirQualityIndex: () => {},
+  locationCoords: {},
+  setLocationCoords: () => {},
 });
 
 export const useLocationContext = () => {

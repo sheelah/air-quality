@@ -7,9 +7,10 @@ import { LocationContext } from '../components/LocationContext';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
-  const [location, setLocation] = useState({ lat: null, lng: null });
-  const [airQualityIndex, setAirQualityIndex] = useState({});
-  const [isFetching, setIsFetching] = useState(false);
+  const [locationCoords, setLocationCoords] = useState({
+    lat: null,
+    lng: null,
+  });
 
   return (
     <div className={styles.container}>
@@ -21,16 +22,7 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>Air Quality Today</h1>
 
-        <LocationContext.Provider
-          value={{
-            location,
-            setLocation,
-            airQualityIndex,
-            setAirQualityIndex,
-            isFetching,
-            setIsFetching,
-          }}
-        >
+        <LocationContext.Provider value={{ locationCoords, setLocationCoords }}>
           <LocationForm />
 
           <AirQuality />
