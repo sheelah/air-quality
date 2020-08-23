@@ -1,4 +1,5 @@
 import { useLocationContext } from './LocationContext';
+import GpsIcon from 'svg-react-loader?name=gpsIcon!../assets/svg/gps-icon.svg';
 
 const LocationForm = () => {
   const {
@@ -42,9 +43,10 @@ const LocationForm = () => {
           onChange={handleZipChange}
         />
       </form>
-      <span>
-        OR <button onClick={getUserGeolocation}>Use Current Location</button>
-      </span>
+
+      <button onClick={getUserGeolocation} aria-label="Use Current Location">
+        <GpsIcon />
+      </button>
     </section>
   );
 };
