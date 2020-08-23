@@ -1,20 +1,28 @@
 import { useLocationContext } from './LocationContext';
-import { useWeatherByCoords } from '../hooks/useWeatherData';
+import { useWeatherByCoords, useWeatherByZip } from '../hooks/useWeatherData';
 import { getPm25Levels } from '../utils/dataFilters';
 
 const AirQuality = () => {
-  const { locationCoords } = useLocationContext();
-  const { isLoading, isError, data, error } = useWeatherByCoords(
-    locationCoords.lat,
-    locationCoords.lng
-  );
+  const { locationCoords, zipcode } = useLocationContext();
+  let fetchStatus = {};
 
+  if (locationCoords.lat && locationCoords.lng) {
+    fetchStatus = useWeatherByCoords(locationCoords.lat, locationCoords.lng);
+  } else {
+    fetchStatus = useWeatherByZip(zipcode);
+  }
+
+  const { isLoading, isError, data, error } = fetchStatus;
   if (!data || isLoading) {
     return 'Loading...';
   }
 
   if (isError) {
-    console.log('Oops - an error occurred:', error);
+    return <p>Ooops - an error occurred! {error}</p>;
+  }
+
+  if (!isLoading && !data.length) {
+    return <p>Sorry - No data was found for your location!</p>;
   }
 
   // Filter air quality for small particulate matter levels

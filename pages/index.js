@@ -6,11 +6,21 @@ import LocationForm from '../components/LocationForm';
 import { LocationContext } from '../components/LocationContext';
 import styles from '../styles/Home.module.css';
 
+const renderAirQuality = (hasUserLocation) => {
+  if (hasUserLocation) {
+    return <AirQuality />;
+  } else {
+    return <LocationForm />;
+  }
+};
+
 export default function Home() {
   const [locationCoords, setLocationCoords] = useState({
     lat: null,
     lng: null,
   });
+  const [zipcode, setZipcode] = useState(null);
+  const [hasUserLocation, setHasUserLocation] = useState(null);
 
   return (
     <div className={styles.container}>
@@ -22,10 +32,17 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>Air Quality Today</h1>
 
-        <LocationContext.Provider value={{ locationCoords, setLocationCoords }}>
-          <LocationForm />
-
-          <AirQuality />
+        <LocationContext.Provider
+          value={{
+            locationCoords,
+            setLocationCoords,
+            zipcode,
+            setZipcode,
+            hasUserLocation,
+            setHasUserLocation,
+          }}
+        >
+          {renderAirQuality(hasUserLocation)}
         </LocationContext.Provider>
       </main>
 
