@@ -1,5 +1,5 @@
 import { useLocationContext } from './LocationContext';
-import GpsIcon from 'svg-react-loader?name=gpsIcon!../assets/svg/gps-icon.svg';
+import GpsIcon from '../assets/svg/gps-icon.svg';
 
 const LocationForm = () => {
   const {
