@@ -1,6 +1,6 @@
 import { useLocationContext } from './LocationContext';
 import { useWeatherByCoords, useWeatherByZip } from '../hooks/useWeatherData';
-import { getPm25Levels } from '../utils/dataFilters';
+import { getMaxAirQualityIndex } from '../utils/dataFilters';
 
 const AirQuality = () => {
   const { locationCoords, zipcode } = useLocationContext();
@@ -26,12 +26,13 @@ const AirQuality = () => {
   }
 
   // Filter air quality for small particulate matter levels
-  const aq = getPm25Levels(data);
+  const aq = getMaxAirQualityIndex(data);
 
   const {
     AQI: airQualityIndex,
     ReportingArea: reportingLocation,
     Category: { Name: description },
+    ParameterName,
   } = aq;
 
   return (
@@ -39,6 +40,9 @@ const AirQuality = () => {
       <span className="air-quality-index">{airQualityIndex}</span>
       <span className="reporting-location">{reportingLocation}</span>
       <span className="description">{description}</span>
+      <span className="pollutant type">
+        Highest Pollutant Category: {ParameterName}
+      </span>
     </div>
   );
 };
