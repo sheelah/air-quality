@@ -31,7 +31,7 @@ export default function Home() {
           name="description"
           content="Get the current air quality for your location"
         />
-        <meta property="og:title" content="Home" />
+        <meta property="og:title" content="Air Quality Now" />
         <meta property="og:type" content="website" />
       </Head>
 

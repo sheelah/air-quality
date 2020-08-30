@@ -1,0 +1,18 @@
+.container {
+  position: relative;
+}
+
+.zipcode_input {
+  width: 180px;
+  padding: 0.2rem;
+  margin-left: 0.4rem;
+}
+
+.button {
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  background-color: transparent;
+  border: 0;
+  height: 100%;
+}

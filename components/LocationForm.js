@@ -1,5 +1,6 @@
 import { useLocationContext } from './LocationContext';
 import GpsIcon from '../assets/svg/gps-icon.svg';
+import styles from '../styles/LocationForm.module.css';
 
 const LocationForm = () => {
   const {
@@ -33,18 +34,26 @@ const LocationForm = () => {
   };
 
   return (
-    <section className="location-input-section">
-      <form className="location-form" onSubmit={handleFormSubmit}>
-        <label htmlFor="zipcode">Zipcode</label>
+    <section className={styles.container}>
+      <form onSubmit={handleFormSubmit}>
+        <label htmlFor="zipcode" className={styles.label}>
+          Zipcode
+        </label>
         <input
           type="text"
+          id="zipcode"
           value={zipcode}
-          placeholder="Zipcode"
+          placeholder="14220"
+          className={styles.zipcode_input}
           onChange={handleZipChange}
         />
       </form>
 
-      <button onClick={getUserGeolocation} aria-label="Use Current Location">
+      <button
+        onClick={getUserGeolocation}
+        aria-label="Use Current Location"
+        className={styles.button}
+      >
         <GpsIcon />
       </button>
     </section>
