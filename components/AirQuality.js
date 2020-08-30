@@ -1,6 +1,7 @@
 import { useLocationContext } from './LocationContext';
 import { useWeatherByCoords, useWeatherByZip } from '../hooks/useWeatherData';
 import { getMaxAirQualityIndex } from '../utils/dataFilters';
+import styles from '../styles/AirQuality.module.css';
 
 const AirQuality = () => {
   const { locationCoords, zipcode } = useLocationContext();
@@ -36,11 +37,14 @@ const AirQuality = () => {
   } = aq;
 
   return (
-    <div className="air-quality-status">
-      <span className="air-quality-index">{airQualityIndex}</span>
-      <span className="reporting-location">{reportingLocation}</span>
-      <span className="description">{description}</span>
-      <span className="pollutant type">
+    <div className={styles.details}>
+      <h2 className={styles.index_label}>
+        Air Quality Index:
+        <span className={styles.index}>{airQualityIndex}</span>
+      </h2>
+      <span className={styles.info}>Reporting Area: {reportingLocation}</span>
+      <span className={styles.info}>EPA Classification: {description}</span>
+      <span className={styles.info}>
         Highest Pollutant Category: {ParameterName}
       </span>
     </div>
