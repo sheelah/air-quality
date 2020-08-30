@@ -5,7 +5,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to right, #ffd7a5, #8f255b);
+  background: linear-gradient(to bottom, #dbb07b, #8f255b);
+}
+
+@media (min-width: 700px) {
+  .container {
+    background: linear-gradient(to right, #dbb07b, #8f255b);
+  }
 }
 
 .main {
