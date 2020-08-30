@@ -5,10 +5,13 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      &copy; {year}
-      <a className={styles.link} href="https://www.sheelahb.com">
-        Sheelah Brennan
-      </a>
+      <p className={styles.copyright}>
+        &copy; {year}
+        <a className={styles.link} href="https://www.sheelahb.com">
+          Sheelah Brennan.
+        </a>
+        All rights reserved.
+      </p>
     </footer>
   );
 };
