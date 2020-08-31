@@ -35,27 +35,29 @@ const LocationForm = () => {
 
   return (
     <section className={styles.container}>
-      <form onSubmit={handleFormSubmit}>
-        <label htmlFor="zipcode" className={styles.label}>
-          Zipcode
-        </label>
-        <input
-          type="text"
-          id="zipcode"
-          value={zipcode}
-          placeholder="14220"
-          className={styles.zipcode_input}
-          onChange={handleZipChange}
-        />
-      </form>
+      <div className={styles.form_wrapper}>
+        <form onSubmit={handleFormSubmit}>
+          <label htmlFor="zipcode" className={styles.label}>
+            Zipcode
+          </label>
+          <input
+            type="text"
+            id="zipcode"
+            value={zipcode}
+            placeholder="14220"
+            className={styles.zipcode_input}
+            onChange={handleZipChange}
+          />
+        </form>
 
-      <button
-        onClick={getUserGeolocation}
-        aria-label="Use Current Location"
-        className={styles.button}
-      >
-        <GpsIcon />
-      </button>
+        <button
+          onClick={getUserGeolocation}
+          aria-label="Use Current Location"
+          className={styles.button}
+        >
+          <GpsIcon />
+        </button>
+      </div>
     </section>
   );
 };
