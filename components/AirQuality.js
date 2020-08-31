@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useLocationContext } from './LocationContext';
 import { useWeatherByCoords, useWeatherByZip } from '../hooks/useWeatherData';
 import { getMaxAirQualityIndex } from '../utils/dataFilters';
@@ -31,6 +32,11 @@ const Results = ({ isFetching, data }) => {
       </span>
     </div>
   );
+};
+
+Results.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  data: PropTypes.object,
 };
 
 const AirQuality = () => {

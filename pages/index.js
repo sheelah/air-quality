@@ -15,7 +15,7 @@ const renderAirQuality = (hasUserLocation) => {
   }
 };
 
-export default function Home() {
+const Home = () => {
   const [locationCoords, setLocationCoords] = useState({
     lat: null,
     lng: null,
@@ -56,4 +56,6 @@ export default function Home() {
       <Footer />
     </div>
   );
-}
+};
+
+export default Home;
