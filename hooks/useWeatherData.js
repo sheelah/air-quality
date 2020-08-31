@@ -8,6 +8,10 @@ const ZIP_API_ENDPOINT =
 const API_FIELDS = 'format=application/json';
 const API_KEY = process.env.NEXT_PUBLIC_AQ_API_KEY;
 
+const reactQueryConfig = {
+  refetchOnWindowFocus: false,
+};
+
 export const getWeatherByCoordinates = async (_, lat, long) => {
   const response = await fetch(
     `${CORS_PROXY}${GEO_API_ENDPOINT}?${API_FIELDS}&latitude=${lat}&longitude=${long}&api_key=${API_KEY}`
@@ -37,9 +41,13 @@ export const getWeatherByZip = async (_, zip) => {
 };
 
 export const useWeatherByCoords = (lat, long) => {
-  return useQuery(['weatherByCoords', lat, long], getWeatherByCoordinates);
+  return useQuery(
+    ['weatherByCoords', lat, long],
+    getWeatherByCoordinates,
+    reactQueryConfig
+  );
 };
 
 export const useWeatherByZip = (zip) => {
-  return useQuery(['weatherByZip', zip], getWeatherByZip);
+  return useQuery(['weatherByZip', zip], getWeatherByZip, reactQueryConfig);
 };

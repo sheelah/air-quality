@@ -1,4 +1,8 @@
 .container {
+  grid-area: content;
+}
+
+.form_wrapper {
   position: relative;
 }
 

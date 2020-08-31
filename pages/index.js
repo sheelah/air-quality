@@ -4,6 +4,7 @@ import AirQuality from '../components/AirQuality';
 import Footer from '../components/Footer';
 import LocationForm from '../components/LocationForm';
 import { LocationContext } from '../components/LocationContext';
+import ResultsWrapper from '../components/ResultsWrapper';
 import styles from '../styles/Home.module.css';
 
 const renderAirQuality = (hasUserLocation) => {
@@ -14,7 +15,7 @@ const renderAirQuality = (hasUserLocation) => {
   }
 };
 
-export default function Home() {
+const Home = () => {
   const [locationCoords, setLocationCoords] = useState({
     lat: null,
     lng: null,
@@ -48,11 +49,13 @@ export default function Home() {
             setHasUserLocation,
           }}
         >
-          {renderAirQuality(hasUserLocation)}
+          <ResultsWrapper>{renderAirQuality(hasUserLocation)}</ResultsWrapper>
         </LocationContext.Provider>
       </main>
 
       <Footer />
     </div>
   );
-}
+};
+
+export default Home;
