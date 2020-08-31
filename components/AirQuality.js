@@ -3,27 +3,9 @@ import { useWeatherByCoords, useWeatherByZip } from '../hooks/useWeatherData';
 import { getMaxAirQualityIndex } from '../utils/dataFilters';
 import styles from '../styles/AirQuality.module.css';
 
-const AirQuality = () => {
-  const { locationCoords, zipcode } = useLocationContext();
-  let fetchStatus = {};
-
-  if (locationCoords.lat && locationCoords.lng) {
-    fetchStatus = useWeatherByCoords(locationCoords.lat, locationCoords.lng);
-  } else {
-    fetchStatus = useWeatherByZip(zipcode);
-  }
-
-  const { isLoading, isError, data, error } = fetchStatus;
-  if (!data || isLoading) {
-    return 'Loading...';
-  }
-
-  if (isError) {
-    return <p>Ooops - an error occurred! {error}</p>;
-  }
-
-  if (!isLoading && !data.length) {
-    return <p>Sorry - No data was found for your location!</p>;
+const Results = ({ isFetching, data }) => {
+  if (isFetching || !data) {
+    return null;
   }
 
   // Filter air quality for small particulate matter levels
@@ -49,6 +31,29 @@ const AirQuality = () => {
       </span>
     </div>
   );
+};
+
+const AirQuality = () => {
+  const { locationCoords, zipcode } = useLocationContext();
+  let fetchStatus = {};
+
+  if (locationCoords.lat && locationCoords.lng) {
+    fetchStatus = useWeatherByCoords(locationCoords.lat, locationCoords.lng);
+  } else {
+    fetchStatus = useWeatherByZip(zipcode);
+  }
+
+  const { isLoading, isError, data, error } = fetchStatus;
+
+  if (isError) {
+    return <p>Ooops - an error occurred! {error}</p>;
+  }
+
+  if (!isLoading && !data.length) {
+    return <p>Sorry - No data was found for your location!</p>;
+  }
+
+  return <Results data={data} isFetching={isLoading} />;
 };
 
 export default AirQuality;
