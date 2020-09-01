@@ -4,7 +4,38 @@ import { useWeatherByCoords, useWeatherByZip } from '../hooks/useWeatherData';
 import { getMaxAirQualityIndex } from '../utils/dataFilters';
 import styles from '../styles/AirQuality.module.css';
 
+const calculateRatingClass = (rating) => {
+  let result = 1;
+
+  switch (rating.toLowerCase()) {
+    case 'good':
+      result = 1;
+      break;
+    case 'moderate':
+      result = 2;
+      break;
+    case 'unhealthy for sensitive groups':
+      result = 3;
+      break;
+    case 'unhealthy':
+      result = 4;
+      break;
+    case 'very unhealthy':
+      result = 5;
+      break;
+    case 'hazardous':
+      result = 6;
+      break;
+    default:
+      result = 1;
+      break;
+  }
+
+  return result;
+};
+
 const Results = ({ isFetching, data }) => {
+  const { setRatingClass } = useLocationContext();
   if (isFetching || !data) {
     return null;
   }
@@ -18,6 +49,10 @@ const Results = ({ isFetching, data }) => {
     Category: { Name: description },
     ParameterName,
   } = aq;
+
+  const ratingClass = calculateRatingClass(description);
+  console.log('got rating class:', ratingClass);
+  setRatingClass(ratingClass);
 
   return (
     <div className={styles.details}>
