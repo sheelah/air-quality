@@ -9,7 +9,7 @@ const ResultsWrapper = ({ children }) => {
 
   return (
     <div
-      class={styles.results_wrapper}
+      className={styles.results_wrapper}
       aria-live="polite"
       aria-busy={isFetching === 1}
     >
