@@ -22,10 +22,13 @@ const Home = () => {
   });
   const [zipcode, setZipcode] = useState(null);
   const [hasUserLocation, setHasUserLocation] = useState(null);
-  const [ratingClass, setRatingClass] = useState(1);
+  const [rating, setRating] = useState({
+    ratingIndex: 1,
+    ratingText: '',
+  });
 
   return (
-    <div className={styles.container} data-rating-class={ratingClass}>
+    <div className={styles.container} data-rating-index={rating.ratingIndex}>
       <Head>
         <title>Air Quality Now</title>
         <link rel="icon" href="/favicon.ico" />
@@ -48,8 +51,8 @@ const Home = () => {
             setZipcode,
             hasUserLocation,
             setHasUserLocation,
-            ratingClass,
-            setRatingClass,
+            rating,
+            setRating,
           }}
         >
           <ResultsWrapper>{renderAirQuality(hasUserLocation)}</ResultsWrapper>
