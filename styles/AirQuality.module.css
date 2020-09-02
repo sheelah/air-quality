@@ -1,7 +1,17 @@
-.details {
+.air_quality_details {
   grid-area: content;
   text-align: center;
+  opacity: 0;
+  animation: fade_in 0.3s cubic-bezier(0.28, 0.81, 0.95, 0.61) forwards;
+}
+
+.details {
   font-size: 1.1rem;
+}
+
+.rating_text {
+  font-size: 1.7rem;
+  margin-bottom: 2.2rem;
 }
 
 .info {
@@ -17,4 +27,20 @@
 
 .index {
   margin-left: 0.4rem;
+}
+
+@keyframes fade_in {
+  0% {
+    visibility: hidden;
+  }
+  10% {
+    visibility: visible;
+    opacity: 0.2;
+  }
+  60% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
 }

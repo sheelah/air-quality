@@ -7,6 +7,11 @@ export const LocationContext = React.createContext({
   setZipcode: () => {},
   hasUserLocation: false,
   setHasUserLocation: () => {},
+  rating: {
+    ratingIndex: 1,
+    ratingText: '',
+  },
+  setRating: () => {},
 });
 
 export const useLocationContext = () => {
