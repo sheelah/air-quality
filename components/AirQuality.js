@@ -1,41 +1,43 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useLocationContext } from './LocationContext';
 import { useWeatherByCoords, useWeatherByZip } from '../hooks/useWeatherData';
 import { getMaxAirQualityIndex } from '../utils/dataFilters';
 import styles from '../styles/AirQuality.module.css';
 
-const calculateRatingClass = (rating) => {
-  let result = 1;
+const calculateRating = (rating) => {
+  const ratings = {
+    good: {
+      index: 1,
+      text: 'All good! Get the heck outside.',
+    },
+    moderate: {
+      index: 2,
+      text: "It's not perfect but decent! Get outside.",
+    },
+    'unhealthy for sensitive groups': {
+      index: 3,
+      text: "Meh - it's OK but maybe avoid heavy exersion outside.",
+    },
+    unhealthy: {
+      index: 4,
+      text: "It's more of an inside day.",
+    },
+    'very unhealthy': {
+      index: 5,
+      text: "No joke - it's an inside day.",
+    },
+    hazardous: {
+      index: 6,
+      text: 'Be careful, for reals! Stay inside.',
+    },
+  };
 
-  switch (rating.toLowerCase()) {
-    case 'good':
-      result = 1;
-      break;
-    case 'moderate':
-      result = 2;
-      break;
-    case 'unhealthy for sensitive groups':
-      result = 3;
-      break;
-    case 'unhealthy':
-      result = 4;
-      break;
-    case 'very unhealthy':
-      result = 5;
-      break;
-    case 'hazardous':
-      result = 6;
-      break;
-    default:
-      result = 1;
-      break;
-  }
-
-  return result;
+  return ratings[rating.toLowerCase()];
 };
 
 const Results = ({ isFetching, data }) => {
-  const { setRatingClass } = useLocationContext();
+  const { rating, setRating } = useLocationContext();
   if (isFetching || !data) {
     return null;
   }
@@ -50,21 +52,28 @@ const Results = ({ isFetching, data }) => {
     ParameterName,
   } = aq;
 
-  const ratingClass = calculateRatingClass(description);
-  console.log('got rating class:', ratingClass);
-  setRatingClass(ratingClass);
+  useEffect(() => {
+    const { index: ratingIndex, text: ratingText } = calculateRating(
+      description
+    );
+
+    setRating({ ratingIndex, ratingText });
+  }, [description]);
 
   return (
-    <div className={styles.details}>
-      <h2 className={styles.index_label}>
-        Air Quality Index:
-        <span className={styles.index}>{airQualityIndex}</span>
-      </h2>
-      <span className={styles.info}>Reporting Area: {reportingLocation}</span>
-      <span className={styles.info}>EPA Classification: {description}</span>
-      <span className={styles.info}>
-        Highest Pollutant Category: {ParameterName}
-      </span>
+    <div className={styles.air_quality_details}>
+      <h2 className={styles.rating_text}>{rating.ratingText}</h2>
+      <div className={styles.details}>
+        <p className={styles.index_label}>
+          Air Quality Index:
+          <span className={styles.index}>{airQualityIndex}</span>
+        </p>
+        <span className={styles.info}>Reporting Area: {reportingLocation}</span>
+        <span className={styles.info}>EPA Classification: {description}</span>
+        <span className={styles.info}>
+          Highest Pollutant Category: {ParameterName}
+        </span>
+      </div>
     </div>
   );
 };
