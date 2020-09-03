@@ -17,12 +17,10 @@ export const getWeatherByCoordinates = async (_, lat, long) => {
     `${CORS_PROXY}${GEO_API_ENDPOINT}?${API_FIELDS}&latitude=${lat}&longitude=${long}&api_key=${API_KEY}`
   );
 
-  const data = await response.json();
-
   if (response.ok) {
-    return data;
+    return await response.json();
   } else {
-    return Promise.reject(data);
+    return Promise.reject(response);
   }
 };
 
@@ -31,12 +29,10 @@ export const getWeatherByZip = async (_, zip) => {
     `${CORS_PROXY}${ZIP_API_ENDPOINT}?${API_FIELDS}&zipCode=${zip}&api_key=${API_KEY}`
   );
 
-  const data = await response.json();
-
   if (response.ok) {
-    return data;
+    return await response.json();
   } else {
-    return Promise.reject(data);
+    return Promise.reject(response);
   }
 };
 
