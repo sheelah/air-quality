@@ -10,27 +10,27 @@ const calculateRating = (rating) => {
   const ratings = {
     good: {
       index: 1,
-      text: 'All good! Get the heck outside.',
+      text: `All good! Get the heck outside.`,
     },
     moderate: {
       index: 2,
-      text: "It's not perfect but decent! Get outside.",
+      text: `It's not perfect but not terrible! It's OK to get outside for a bit.`,
     },
     'unhealthy for sensitive groups': {
       index: 3,
-      text: "Meh - it's OK but maybe avoid heavy exersion outside.",
+      text: `Meh - it's OK but maybe avoid heavy exertion outside.`,
     },
     unhealthy: {
       index: 4,
-      text: "It's more of an inside day.",
+      text: `It's more of an inside day.`,
     },
     'very unhealthy': {
       index: 5,
-      text: "No joke - it's an inside day.",
+      text: `No joke - it's an inside day.`,
     },
     hazardous: {
       index: 6,
-      text: 'Be careful, for reals! Stay inside.',
+      text: `Be careful, for reals! Stay inside.`,
     },
   };
 
