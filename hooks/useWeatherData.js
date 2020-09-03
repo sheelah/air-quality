@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query';
+import { handleApiResponse } from '../utils/api';
 
 const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
 const GEO_API_ENDPOINT =
@@ -17,11 +18,7 @@ export const getWeatherByCoordinates = async (_, lat, long) => {
     `${CORS_PROXY}${GEO_API_ENDPOINT}?${API_FIELDS}&latitude=${lat}&longitude=${long}&api_key=${API_KEY}`
   );
 
-  if (response.ok) {
-    return await response.json();
-  } else {
-    return Promise.reject(response);
-  }
+  return handleApiResponse(response);
 };
 
 export const getWeatherByZip = async (_, zip) => {
@@ -29,11 +26,7 @@ export const getWeatherByZip = async (_, zip) => {
     `${CORS_PROXY}${ZIP_API_ENDPOINT}?${API_FIELDS}&zipCode=${zip}&api_key=${API_KEY}`
   );
 
-  if (response.ok) {
-    return await response.json();
-  } else {
-    return Promise.reject(response);
-  }
+  return handleApiResponse(response);
 };
 
 export const useWeatherByCoords = (lat, long) => {
