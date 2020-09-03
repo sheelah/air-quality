@@ -101,7 +101,11 @@ const AirQuality = () => {
   }
 
   if (!isLoading && !data.length) {
-    return <p>Sorry - No data was found for your location!</p>;
+    return (
+      <div className={styles.no_data_message}>
+        <p>Sorry - No data was found for your location!</p>
+      </div>
+    );
   }
 
   return <Results data={data} isFetching={isLoading} />;

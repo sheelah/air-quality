@@ -7,11 +7,23 @@
 
 .details {
   font-size: 1.1rem;
+  background-color: var(--semi-transparent-white);
+  color: var(--black);
+  display: inline-block;
+  padding: 1rem;
+  border-radius: 4px;
 }
 
 .rating_text {
-  font-size: 1.7rem;
-  margin-bottom: 2.2rem;
+  font-size: 1.5rem;
+  max-width: 60%;
+  margin: 0 auto 2.5rem;
+}
+
+@media (min-width: 700px) {
+  .rating_text {
+    font-size: 1.7rem;
+  }
 }
 
 .info {
@@ -27,6 +39,12 @@
 
 .index {
   margin-left: 0.4rem;
+}
+
+.no_data_message {
+  grid-area: content;
+  text-align: center;
+  font-size: 1.1rem;
 }
 
 @keyframes fade_in {

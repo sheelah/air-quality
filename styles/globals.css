@@ -1,7 +1,9 @@
 :root {
   --white: #eaeaea;
   --soft-white: #eaeaea2e;
-  --semi-transparent-white: #ffffff2e;
+  --black: #222;
+  --very-transparent-white: #ffffff2e;
+  --semi-transparent-white: #eaeaead4;
   --image-opacity: 0.2;
 }
 
