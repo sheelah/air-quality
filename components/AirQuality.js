@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useLocationContext } from './LocationContext';
+import ErrorMessage from './ErrorMessage';
 import { useWeatherByCoords, useWeatherByZip } from '../hooks/useWeatherData';
 import { getMaxAirQualityIndex } from '../utils/dataFilters';
 import styles from '../styles/AirQuality.module.css';
@@ -96,7 +97,7 @@ const AirQuality = () => {
   const { isLoading, isError, data, error } = fetchStatus;
 
   if (isError) {
-    return <p>Ooops - an error occurred! {error}</p>;
+    return <ErrorMessage error={error} />;
   }
 
   if (!isLoading && !data.length) {
