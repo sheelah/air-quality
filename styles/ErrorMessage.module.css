@@ -1,0 +1,9 @@
+.error_status {
+  grid-area: content;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.error_status p {
+  margin: 0;
+}

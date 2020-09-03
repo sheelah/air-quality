@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useLocationContext } from './LocationContext';
+import ErrorMessage from './ErrorMessage';
 import { useWeatherByCoords, useWeatherByZip } from '../hooks/useWeatherData';
 import { getMaxAirQualityIndex } from '../utils/dataFilters';
 import styles from '../styles/AirQuality.module.css';
@@ -9,27 +10,27 @@ const calculateRating = (rating) => {
   const ratings = {
     good: {
       index: 1,
-      text: 'All good! Get the heck outside.',
+      text: `All good! Get the heck outside.`,
     },
     moderate: {
       index: 2,
-      text: "It's not perfect but decent! Get outside.",
+      text: `It's not perfect but not terrible! It's OK to get outside for a bit.`,
     },
     'unhealthy for sensitive groups': {
       index: 3,
-      text: "Meh - it's OK but maybe avoid heavy exersion outside.",
+      text: `Meh - it's OK but maybe avoid heavy exertion outside.`,
     },
     unhealthy: {
       index: 4,
-      text: "It's more of an inside day.",
+      text: `It's more of an inside day.`,
     },
     'very unhealthy': {
       index: 5,
-      text: "No joke - it's an inside day.",
+      text: `No joke - it's an inside day.`,
     },
     hazardous: {
       index: 6,
-      text: 'Be careful, for reals! Stay inside.',
+      text: `Be careful, for reals! Stay inside.`,
     },
   };
 
@@ -96,11 +97,15 @@ const AirQuality = () => {
   const { isLoading, isError, data, error } = fetchStatus;
 
   if (isError) {
-    return <p>Ooops - an error occurred! {error}</p>;
+    return <ErrorMessage error={error} />;
   }
 
   if (!isLoading && !data.length) {
-    return <p>Sorry - No data was found for your location!</p>;
+    return (
+      <div className={styles.no_data_message}>
+        <p>Sorry - No data was found for your location!</p>
+      </div>
+    );
   }
 
   return <Results data={data} isFetching={isLoading} />;

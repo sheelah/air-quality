@@ -11,7 +11,7 @@
   width: 40px;
   height: 40px;
   margin: 20px auto;
-  border: 4px var(--semi-transparent-white) solid;
+  border: 4px var(--very-transparent-white) solid;
   border-top: 4px var(--white) solid;
   border-radius: 50%;
   display: block;
