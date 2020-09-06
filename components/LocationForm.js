@@ -38,7 +38,7 @@ const LocationForm = () => {
       <div className={styles.form_wrapper}>
         <form onSubmit={handleFormSubmit}>
           <label htmlFor="zipcode" className={styles.label}>
-            Zipcode
+            US Zipcode
           </label>
           <input
             type="text"
