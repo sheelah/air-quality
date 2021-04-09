@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import { handleApiResponse } from '../utils/api';
 
-const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
+const CORS_PROXY = 'https://corsanywhere.herokuapp.com/';
 const GEO_API_ENDPOINT =
   'https://www.airnowapi.org/aq/observation/latLong/current/';
 const ZIP_API_ENDPOINT =
